@@ -17,12 +17,15 @@ if __name__ == '__main__':
   pygame.mixer.pre_init(44100, -16, 2, 1024)
 
   pygame.init();
-  pygame.display.set_mode((1,1))
+  # Disable to allow run program from ssh term
+  #pygame.display.set_mode((1,1))
 
   if os.path.islink('/dev/input/by-id/usb-JoyLabz_Makey_Makey_v1.20aa_50000000-event-kbd'):
     dev = InputDevice('/dev/input/by-id/usb-JoyLabz_Makey_Makey_v1.20aa_50000000-event-kbd')
   elif os.path.islink('/dev/input/by-id/usb-Arduino_LLC_Arduino_Leonardo-if02-event-mouse'):
     dev = InputDevice('/dev/input/by-id/usb-Arduino_LLC_Arduino_Leonardo-if02-event-mouse')
+  elif os.path.islink('/dev/input/by-id/usb-Unknown_USB_IO_Board-if02-event-kbd'):
+    dev = InputDevice('/dev/input/by-id/usb-Unknown_USB_IO_Board-if02-event-kbd')
   else:
     print "No MakeyMakey/Arduino Leonardo found:-("
     sys.exit(1)
