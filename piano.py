@@ -66,6 +66,29 @@ if __name__ == '__main__':
     pygame.mixer.Sound('audio-files/net_E4.wav'),
   ]
 
+  drumNotes = [
+    pygame.mixer.Sound('audio-files/power-drumkit/BDRUM13.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/BONGO2.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/CRASH1.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/HHOPEN1.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/HHCLOSE1.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/RIDECUP.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/RIDESHOT1.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/SNARE12.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/TOMHI1.wav'),
+    pygame.mixer.Sound('audio-files/power-drumkit/TOMHI3.wav'),
+  ]
+
+  wheel_pos = 0
+  wheel_change = [
+    pygame.mixer.Sound('audio-files/change1.wav'),
+    pygame.mixer.Sound('audio-files/change2.wav')
+  ]
+  wheel = [
+    pianoNotes,
+    drumNotes
+  ]
+
   mode = "piano"
   notes = pianoNotes
 
@@ -118,3 +141,11 @@ if __name__ == '__main__':
 	  elif noteHistory == (3, 6, 9):
 	    mode = "organ"
 	    notes = organNotes
+      # Change piano map when space key is pressed
+      elif mode=='piano' and touchState=='press' and event.code == ecodes.KEY_SPACE:
+        wheel_pos += 1
+        if wheel_pos == len(wheel):
+          wheel_pos = 0
+        notes = wheel[wheel_pos]
+        note = wheel_change[wheel_pos]
+        note.play()
