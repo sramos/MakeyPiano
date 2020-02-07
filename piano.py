@@ -81,8 +81,8 @@ if __name__ == '__main__':
 
   wheel_pos = 0
   wheel_change = [
-    pygame.mixer.Sound('audio-files/change1.wav'),
-    pygame.mixer.Sound('audio-files/change2.wav')
+    pygame.mixer.Sound('audio-files/change_to_piano.wav'),
+    pygame.mixer.Sound('audio-files/change_to_drum.wav')
   ]
   wheel = [
     pianoNotes,
